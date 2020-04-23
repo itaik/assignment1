@@ -3,8 +3,8 @@ package comp3170.ass1.sceneobjects;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.joml.Matrix4d;
 import org.joml.Matrix4f;
+import org.joml.Vector3f;
 
 import comp3170.Shader;
 
@@ -69,5 +69,25 @@ public class SceneObject {
 		}
 		
 	}
-
+	
+	
+	/*
+	 * Some methods I made for intuitive access to information used in other parts of the program
+	 */
+	
+	public float getXPosition() {
+		return this.localMatrix.get(new float[16])[12];
+	}
+	
+	public float getYPosition() {
+		return this.localMatrix.get(new float[16])[13];
+	}
+	
+	public double distanceFrom(SceneObject other) {
+		return Math.sqrt(Math.pow((this.getXPosition() - other.getXPosition()), 2) + Math.pow(this.getYPosition() - other.getYPosition(), 2));
+	}
+	
+	public double faceingAngle() {
+		return this.localMatrix.getEulerAnglesZYX(new Vector3f()).z;
+	}
 }

@@ -36,6 +36,14 @@ public class House extends SceneObject {
 	    this.roofVertexBuffer = shader.createBuffer(this.roofVertices);    
 	}
 	
+	public House(Shader shader, SceneObject root, float x, float y) {
+		this(shader);
+		this.localMatrix.scale(0.05f, 0.05f, 1);
+		this.localMatrix.translate(x, y, 0);
+		this.setParent(root);
+	}
+
+
 	@Override
 	protected void drawSelf(Shader shader) {
 		GL4 gl = (GL4) GLContext.getCurrentGL();
